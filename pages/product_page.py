@@ -31,3 +31,9 @@ class ProductPage(BasePage):
     def check_cart_price(self, item_price):
         assert self.browser.find_element(*ProductPageLocators.SUCCESS_POPUP_CART_PRICE).text == item_price, \
             "The price in the cart differs from the price in the card"
+
+    def should_not_be_popup_about_adding_to_cart(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_POPUP_ADDING)
+
+    def popup_should_be_disappeared(self):
+        assert self.is_element_disappeared(*ProductPageLocators.SUCCESS_POPUP_ADDING)
