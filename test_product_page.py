@@ -10,7 +10,7 @@ from mimesis import Person
 class TestUserAddToBasketFromProductPageTestUserAddToBasketFromProductPage:
 
     @pytest.fixture(scope='function', autouse=True)
-    def test_registration(self, browser):
+    def setup(self, browser):
         test_user = Person()
         login_page = LoginPage(browser, LOGIN_PAGE_URL)
         login_page.open()
