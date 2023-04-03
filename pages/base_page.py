@@ -7,6 +7,7 @@ from selenium.common.exceptions import NoSuchElementException, NoAlertPresentExc
 
 
 class BasePage:
+
     __slots__ = 'browser', 'url', 'timeout'
 
     def __init__(self, browser: WebDriver, url: str, timeout: int = 10):
@@ -49,6 +50,10 @@ class BasePage:
     def go_to_cart_page(self):
         cart_button = self.browser.find_element(*BasePageLocators.CART_BUTTON)
         cart_button.click()
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                     " probably unauthorised user"
 
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert

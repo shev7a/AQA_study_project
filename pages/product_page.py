@@ -1,6 +1,8 @@
 from .base_page import BasePage
 from .locators import ProductPageLocators
 
+PRODUCT_PAGE_URL = 'http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/'
+
 
 class ProductPage(BasePage):
 
@@ -11,7 +13,7 @@ class ProductPage(BasePage):
     def add_product_to_cart(self):
         cart_button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON)
         cart_button.click()
-        self.solve_quiz_and_get_code()
+        # self.solve_quiz_and_get_code()
         return self.browser.find_element(*ProductPageLocators.ITEM_NAME).text, \
                self.browser.find_element(*ProductPageLocators.ITEM_PRICE).text
 
