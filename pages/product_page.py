@@ -10,10 +10,11 @@ class ProductPage(BasePage):
         assert self.is_element_present(*ProductPageLocators.ADD_TO_BASKET_BUTTON), \
             "The add to cart button isn't present on the page"
 
-    def add_product_to_cart(self):
+    def add_product_to_cart(self, need_solve_quiz=False):
         cart_button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON)
         cart_button.click()
-        # self.solve_quiz_and_get_code()
+        if need_solve_quiz:
+            self.solve_quiz_and_get_code()
         return self.browser.find_element(*ProductPageLocators.ITEM_NAME).text, \
                self.browser.find_element(*ProductPageLocators.ITEM_PRICE).text
 
@@ -35,7 +36,7 @@ class ProductPage(BasePage):
             "The price in the cart differs from the price in the card"
 
     def should_not_be_popup_about_adding_to_cart(self):
-        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_POPUP_ADDING)
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_POPUP_ADDING), "The popup was displayed"
 
     def popup_should_be_disappeared(self):
-        assert self.is_element_disappeared(*ProductPageLocators.SUCCESS_POPUP_ADDING)
+        assert self.is_element_disappeared(*ProductPageLocators.SUCCESS_POPUP_ADDING), "The element is not disappeared"

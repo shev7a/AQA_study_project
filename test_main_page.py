@@ -1,8 +1,8 @@
 import pytest
 
-from pages.main_page import MainPage, MAIN_PAGE_URL
-from pages.login_page import LoginPage
-from pages.basket_page import BasketPage
+from .pages.main_page import MainPage, MAIN_PAGE_URL
+from .pages.login_page import LoginPage
+from .pages.basket_page import BasketPage
 
 
 @pytest.mark.login_guest
@@ -27,4 +27,3 @@ def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     basket_page = BasketPage(browser, browser.current_url)
     basket_page.is_basket_empty()
     basket_page.should_be_empty_basket_message()
-
